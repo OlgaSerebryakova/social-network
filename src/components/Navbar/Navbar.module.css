@@ -1,0 +1,15 @@
+.nav {
+    grid-area: n;
+    background-color: cornflowerblue;
+    text-align: center;
+}
+
+.item {
+    color: aquamarine;
+    font: 20px Verdana sans-serif;
+    padding: 5px;
+}
+
+.active {
+    color: aqua;
+}
