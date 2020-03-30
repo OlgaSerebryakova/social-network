@@ -5,3 +5,20 @@ img {
 .descriptionBlock {
     padding: 10px;
 }
+
+.profileImg {
+    width: 300px;
+    height: 300px;
+}
+
+.profileDescription {
+    font-weight: bold;
+    color: deepskyblue;
+}
+
+.profileContacts {
+    color: lightblue;
+    font-style: italic;
+    padding-left: 15px;
+}
+

@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import style from './style.module.css';
 import DialogItem from './DialogItems/index';
-import { sendNewMessageCreator, updateNewMessageTextCreator} from './../../redux/state';
-
-class Message extends Component {
-  render() {
-    return(
-      <div className={style.message}>{this.props.message}</div>
-    )
-  }
-}
+import Message from './Message/index'
 
 export default class Dialogs extends Component {
 
@@ -19,15 +11,15 @@ export default class Dialogs extends Component {
 
   onNewMessageChange = (e) => {
     let text = e.target.value;
-    this.props.dispatch(updateNewMessageTextCreator(text));
+    this.props.updateNewMessageText(text);
   };
 
   addMessage = () => {
-    this.props.dispatch(sendNewMessageCreator());
+    this.props.sendNewMessage();
   };
 
   render() {
-    const { dialogData, messageData } = this.props;
+    const { dialogData, messageData, newMessageText } = this.props.messagePage;
 
     return(
       <div className={style.dialogs}>
@@ -37,7 +29,7 @@ export default class Dialogs extends Component {
         <div className={style.messages}>
           <div>
             <div>
-              <textarea value={this.props.newMessageText}
+              <textarea value={newMessageText}
                         placeholder='Введите текст'
                         onChange={this.onNewMessageChange}
               />

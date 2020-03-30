@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Post from './Post/Post'
 import style from './MyPosts.module.css';
-import { addPostActionCreator, onPostChangeActionCreator } from './../../../redux/state'
+
 
 export default class MyPosts extends Component {
   newPostElement = React.createRef();
@@ -12,14 +12,13 @@ export default class MyPosts extends Component {
     );
   };
 
-  addPost = () => {
-    this.props.dispatch(addPostActionCreator());
+  onAddPost = () => {
+    this.props.addPost();
   };
 
   onPostChange = () => {
     let text = this.newPostElement.current.value;
-    let action = onPostChangeActionCreator(text);
-    this.props.dispatch(action);
+    this.props.onPostChangeText(text);
   };
 
   render() {
@@ -33,7 +32,7 @@ export default class MyPosts extends Component {
             <input ref={this.newPostElement} onChange={this.onPostChange} value={newPostText}/>
           </div>
           <div>
-            <button onClick={ this.addPost }>Add post</button>
+            <button onClick={ this.onAddPost }>Add post</button>
           </div>
         </div>
         <div>
