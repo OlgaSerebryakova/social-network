@@ -8,7 +8,8 @@ import DialogsContainer from './pages/Dialogs/DialogContainer';
 import UsersContainer from './pages/Users/usersContainer';
 import News from './pages/News/index';
 import Music from './pages/Music/index';
-import Settings from './pages/Settings/index'
+import Settings from './pages/Settings/index';
+import LoginPage from './pages/Login/index';
 
 
 export default class App extends Component {
@@ -20,13 +21,16 @@ export default class App extends Component {
           <HeaderContainer />
           <Navbar />
           <div className='wrapper-content'>
-            <Route path='/profile/:userId' render={ () => <ProfileContainer
+            <Route path='/profile/:userId?' render={ () => <ProfileContainer
               store={this.props.store}/> }/>
 
             <Route path='/dialogs' render={ () => <DialogsContainer
             store={this.props.store}/> }/>
 
             <Route path='/users' render={ () => <UsersContainer
+              store={this.props.store}/> }/>
+
+            <Route path='/login' render={ () => <LoginPage
               store={this.props.store}/> }/>
 
             <Route path='/news' component={News}/>

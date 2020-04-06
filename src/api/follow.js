@@ -1,5 +1,4 @@
 import axiosFetch from "./axios";
-import * as axios from "axios";
 
 export const postFollow = (id) => {
   return axiosFetch.post(`follow/${id}`)

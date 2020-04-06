@@ -1,5 +1,6 @@
 import { combineReducers , createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import profileReducer from "./profile_reducer";
 import messageReducer from './message-reducer';
 import sidebarReducer from './sidebar-reducer';
@@ -18,6 +19,6 @@ const logger = createLogger({
   collapsed: true
 });
 
-const store = createStore(createReducers, applyMiddleware(logger));
+const store = createStore(createReducers, applyMiddleware(logger, thunkMiddleware));
 
 export default store;

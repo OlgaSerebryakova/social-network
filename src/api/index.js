@@ -1,8 +1,11 @@
-// import * as user from './auth';
 import * as users from './users';
 import * as follow from './follow';
+import * as profile from './profile';
+import * as auth from './auth';
 
 export default {
   users,
-  follow
+  follow,
+  profile,
+  auth
 };

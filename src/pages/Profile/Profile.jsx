@@ -8,7 +8,7 @@ export default class Profile extends Component {
   render() {
     return(
       <div className={style.content}>
-        <ProfileInfo profile={this.props.profile}/>
+        <ProfileInfo profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
         <MyPostsContainer store={this.props.store}/>
       </div>
     )
