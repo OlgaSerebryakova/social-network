@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Post from './Post/Post'
 import style from './MyPosts.module.css';
+import { Field, reduxForm } from "redux-form";
 
 
 export default class MyPosts extends Component {
-  newPostElement = React.createRef();
 
   renderPost = (post) => {
     return(
@@ -12,28 +12,18 @@ export default class MyPosts extends Component {
     );
   };
 
-  onAddPost = () => {
-    this.props.addPost();
-  };
-
-  onPostChange = () => {
-    let text = this.newPostElement.current.value;
-    this.props.onPostChangeText(text);
+  addNewPost = (values) => {
+    this.props.addPost(values.newPostText);
   };
 
   render() {
-    const { postData, newPostText } = this.props.profilePage;
+    const { postData } = this.props.profilePage;
 
     return(
       <div className={style.post}>
         <h3>My post</h3>
         <div>
-          <div>
-            <input ref={this.newPostElement} onChange={this.onPostChange} value={newPostText}/>
-          </div>
-          <div>
-            <button onClick={ this.onAddPost }>Add post</button>
-          </div>
+          <PostFormRedux onSubmit={this.addNewPost} />
         </div>
         <div>
           {postData.map(this.renderPost)}
@@ -42,3 +32,21 @@ export default class MyPosts extends Component {
     )
   }
 };
+
+
+class PostForm extends Component {
+  render() {
+    return(
+      <form onSubmit={this.props.handleSubmit}>
+        <div>
+          <Field component={'input'} name={'newPostText'}/>
+        </div>
+        <div>
+          <button>Добавить пост</button>
+        </div>
+      </form>
+    )
+  }
+}
+
+const PostFormRedux = reduxForm({form: 'AddPostForm'})(PostForm);

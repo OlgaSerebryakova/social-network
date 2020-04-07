@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 const stateInit = {
@@ -15,36 +14,22 @@ const stateInit = {
       {id: 2, message: 'Hello'},
       {id: 3, message: 'Hi'},
       {id: 4, message: 'Привет'},
-    ],
-    newMessageText: ''
+    ]
 };
 
 export default function messageReducer(state = stateInit, action) {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state,
-        newMessageText: action.newText
-      };
     case SEND_MESSAGE:
       return {
         ...state,
         messageData: [...state.messageData, {
           id: Math.random(),
-          message: state.newMessageText
+          message: action.newMessageText
         } ],
-        newMessageText: '',
       };
     default:
       return state;
   }
 };
 
-export const sendNewMessageCreator = () => ({type: SEND_MESSAGE});
-
-export const updateNewMessageTextCreator = (text) => {
-  return ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: text
-  })
-};
+export const sendNewMessageCreator = (newMessageText) => ({type: SEND_MESSAGE, newMessageText});

@@ -6,13 +6,15 @@ import messageReducer from './message-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
+import { reducer as formReducer} from 'redux-form';
 
 const createReducers = combineReducers({
   profilePage: profileReducer,
   messagePage: messageReducer,
   sidebar: sidebarReducer,
   usersPage: usersReducer,
-  auth: authReducer
+  auth: authReducer,
+  form: formReducer
 });
 
 const logger = createLogger({

@@ -6,3 +6,9 @@ export const getAuthMe = () => {
       .then(response => response.data)
   )
 };
+
+export const postAuthLogin = (dataForm) => {
+  return (
+    axiosFetch.get(`/auth/login`, { dataForm })
+  )
+};

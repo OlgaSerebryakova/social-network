@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './style.module.css';
 import DialogItem from './DialogItems/index';
 import Message from './Message/index'
+import { reduxForm, Field } from "redux-form";
 
 export default class Dialogs extends Component {
 
@@ -9,17 +10,12 @@ export default class Dialogs extends Component {
 
   renderMessage = message => <Message message={message.message} id={message.id} key={message.id}/>;
 
-  onNewMessageChange = (e) => {
-    let text = e.target.value;
-    this.props.updateNewMessageText(text);
-  };
-
-  addMessage = () => {
-    this.props.sendNewMessage();
+  addNewMessage = (values) => {
+    this.props.sendNewMessage(values.newMessageText);
   };
 
   render() {
-    const { dialogData, messageData, newMessageText } = this.props.messagePage;
+    const { dialogData, messageData } = this.props.messagePage;
 
     return(
       <div className={style.dialogs}>
@@ -27,17 +23,7 @@ export default class Dialogs extends Component {
           {dialogData.map(this.renderDialog)}
         </div>
         <div className={style.messages}>
-          <div>
-            <div>
-              <textarea value={newMessageText}
-                        placeholder='Введите текст'
-                        onChange={this.onNewMessageChange}
-              />
-            </div>
-            <div>
-              <button onClick={ this.addMessage }>Add message</button>
-            </div>
-          </div>
+          <AddMessageFormRedux onSubmit={this.addNewMessage}/>
           <div>
             {messageData.map(this.renderMessage)}
           </div>
@@ -46,3 +32,23 @@ export default class Dialogs extends Component {
     )
   }
 };
+
+class AddMessageForm extends Component {
+  render() {
+    return(
+      <form onSubmit={this.props.handleSubmit}>
+        <div>
+          <Field component="textarea"
+                 name="newMessageText"
+                 placeholder="Введите текст"
+                 />
+        </div>
+        <div>
+          <button>Отправить</button>
+        </div>
+      </form>
+    )
+  }
+}
+
+const AddMessageFormRedux = reduxForm ({form: 'AddMessageForm'})(AddMessageForm);
