@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Input } from  './../../components/FormsControls/index';
+import {required} from "../../utils/validators";
+import { connect } from 'react-redux';
+import { LoginActionCreator } from './../../redux/auth-reducer';
+import { Redirect } from 'react-router-dom';
 
 class LoginForm extends Component {
   render() {
     return(
       <form onSubmit={this.props.handleSubmit}>
         <div>
-          <Field component={'input'} name={'login'} placeholder={"Login"}/>
+          <Field component={Input} name={'email'} placeholder={"Email"}
+                 validate={[required]}/>
         </div>
         <div>
-          <Field component={'input'} name={'password'} placeholder={"Password"}/>
+          <Field component={Input} name={'password'} placeholder={"Password"} type='password'/>
         </div>
         <div>
-          <Field component={'input'} name={'rememberMe'} type={"checkbox"}/>remember me
+          <Field component={Input} name={'rememberMe'} type={"checkbox"}/>remember me
         </div>
         <div>
           <button>Login</button>
@@ -24,13 +30,18 @@ class LoginForm extends Component {
 
 const ReduxLoginForm = reduxForm ({form: 'login'})(LoginForm);
 
-export default class Login extends Component {
+class Login extends Component {
 
   onSubmit = (dataForm) => {
-    
+    this.props.LoginActionCreator(dataForm.email, dataForm.password, dataForm.rememberMe)
   };
 
   render() {
+
+    if (this.props.isAuth) {
+      return <Redirect to={'/profile'} />
+    }
+
     return(
       <div>
         <h1>Login</h1>
@@ -38,4 +49,10 @@ export default class Login extends Component {
       </div>
     )
   }
-};
+}
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, { LoginActionCreator })(Login)

@@ -7,8 +7,14 @@ export const getAuthMe = () => {
   )
 };
 
-export const postAuthLogin = (dataForm) => {
+export const Login = (email, password, rememberMe = false) => {
   return (
-    axiosFetch.get(`/auth/login`, { dataForm })
+    axiosFetch.post(`/auth/login`, { email, password, rememberMe })
+  )
+};
+
+export const Logout = () => {
+  return (
+    axiosFetch.delete(`/auth/login`)
   )
 };

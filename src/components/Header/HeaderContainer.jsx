@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from "./Header";
-import { getAuthMeActioCreator } from './../../redux/auth-reducer';
+import { getAuthMeActionCreator, LogoutActionCreator } from './../../redux/auth-reducer';
 
 class HeaderContainer extends Component {
 
   componentDidMount() {
-    this.props.getAuthMeActioCreator();
+    this.props.getAuthMeActionCreator();
   }
 
   render() {
@@ -21,5 +21,5 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, { getAuthMeActioCreator })(HeaderContainer);
+export default connect(mapStateToProps, { getAuthMeActionCreator, LogoutActionCreator })(HeaderContainer);
 
