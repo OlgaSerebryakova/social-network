@@ -6,15 +6,16 @@ import { connect } from 'react-redux';
 import { LoginActionCreator } from './../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
 import style from './../../components/FormsControls/style.module.css';
+import {creatorFields} from "../../components/FormsControls";
 
 class LoginForm extends Component {
   render() {
+    const {handleSubmit, error} = this.props;
     return(
-      <form onSubmit={this.props.handleSubmit}>
-        <div>
-          <Field component={Input} name={'email'} placeholder={"Email"}
-                 validate={[required]}/>
-        </div>
+      <form onSubmit={handleSubmit}>
+        {creatorFields(Input, 'email', "Email", [required] )}
+          {/*<Field component={Input} name={'email'} placeholder={"Email"}*/}
+                 {/*validate={[required]}/>*/}
         <div>
           <Field component={Input} name={'password'} placeholder={"Password"}
                  type='password' validate={[required]}/>
@@ -23,7 +24,7 @@ class LoginForm extends Component {
           <Field component={Input} name={'rememberMe'} type={"checkbox"}/>remember me
         </div>
         <div>
-          {this.props.error && <div className={style.formSummaryError}>{this.props.error}</div>}
+          {error && <div className={style.formSummaryError}>{error}</div>}
         </div>
         <div>
           <button>Login</button>

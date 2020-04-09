@@ -46,28 +46,19 @@ export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostT
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setUserStatus= (status) => ({ type: SET_USER_STATUS, status });
 
-export const getProfileByIdActionCreator = (userId) => (dispatch) => {
-  API.profile.getProfileById(userId)
-    .then(data => {
-      dispatch(setUserProfile(data));
-    })
+export const getProfileByIdActionCreator = (userId) => async (dispatch) => {
+  const response = await API.profile.getProfileById(userId);
+  dispatch(setUserProfile(response.data));
 };
 
-export const getStatusByIdActionCreator = (userId) => (dispatch) => {
-  API.profile.getStatus(userId)
-    .then(response => response.data)
-    .then(data => {
-      dispatch(setUserStatus(data));
-    })
+export const getStatusByIdActionCreator = (userId) => async (dispatch) => {
+  const response = await API.profile.getStatus(userId);
+  dispatch(setUserStatus(response.data));
 };
 
-export const updateStatusActionCreator = (status) => (dispatch) => {
-  API.profile.updateStatus(status)
-    .then(response => response.data)
-    .then(data => {
-      if (data.resultCode === 0) {
-        dispatch(setUserStatus(status));
-      }
-    })
+export const updateStatusActionCreator = (status) => async (dispatch) => {
+  const response = await API.profile.updateStatus(status);
+  if (response.data.resultCode === 0) {
+  dispatch(setUserStatus(status))}
 };
 
