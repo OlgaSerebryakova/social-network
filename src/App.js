@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar.jsx'
@@ -10,11 +12,22 @@ import News from './pages/News/index';
 import Music from './pages/Music/index';
 import Settings from './pages/Settings/index';
 import LoginPage from './pages/Login/index';
+import connect from "react-redux/es/connect/connect";
+import { initializeAPP } from "./redux/app-reducer";
+import Loading from "./assets/images/loading";
 
 
-export default class App extends Component {
+
+class App extends Component {
+
+  componentDidMount() {
+    this.props.initializeAPP();
+  }
 
   render() {
+    if (!this.props.initialized) {
+      return <Loading size={50}/>
+    }
 
     return (
         <div className='app-wrapper'>
@@ -40,7 +53,15 @@ export default class App extends Component {
         </div>
     )
   }
-};
+}
+
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeAPP }))(App);
 
 
 

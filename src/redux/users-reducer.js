@@ -65,7 +65,7 @@ export default function usersReducer(state = initState, action) {
         ...state,
         followingInProc: action.isFetching
           ? [...state.followingInProc, action.userId]
-          : state.followingInProc.filter(id => id != action.userId)
+          : state.followingInProc.filter(id => id !== action.userId)
       };
     default:
       return state;

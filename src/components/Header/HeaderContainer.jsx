@@ -5,10 +5,6 @@ import { getAuthMeActionCreator, LogoutActionCreator } from './../../redux/auth-
 
 class HeaderContainer extends Component {
 
-  componentDidMount() {
-    this.props.getAuthMeActionCreator();
-  }
-
   render() {
     return (
       <Header {...this.props}/>

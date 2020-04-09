@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './style.module.css'
 import Loading from "../../../assets/images/loading";
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHook from './ProfileStatusWithHooks';
 
 export default class ProfileInfo extends Component {
 
@@ -16,7 +16,7 @@ export default class ProfileInfo extends Component {
             {/*</div>*/}
             <div className={style.descriptionBlock}>
               <img className={style.profileImg} src={this.props.profile.photos.large} alt='avatar'/>
-              <ProfileStatus status={this.props.status} updateStatus={this.props.updateStatus}/>
+              <ProfileStatusWithHook status={this.props.status} updateStatus={this.props.updateStatus}/>
               <div><span className={style.profileDescription}>В поисках работы: </span>{this.props.profile.lookingForAJob === true ? 'Да' : 'Нет' }</div>
               <div><span className={style.profileDescription}>Описание: </span>{this.props.profile.lookingForAJobDescription}</div>
               <div><span className={style.profileDescription}>Имя: </span>{this.props.profile.fullName}</div>

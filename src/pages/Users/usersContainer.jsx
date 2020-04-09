@@ -5,6 +5,7 @@ import {follow, unfollow, setUsers,
         getUsers} from "../../redux/users-reducer";
 import Users from "./index";
 import Loading from './../../assets/images/loading';
+import * as userSelectors from './../../redux/users-selectors';
 
 class UsersContainer extends Component {
 
@@ -36,12 +37,12 @@ class UsersContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProc: state.usersPage.followingInProc
+    users: userSelectors.getUsers(state),
+    pageSize: userSelectors.getPageSize(state),
+    totalUsersCount: userSelectors.getTotalUsersCount(state),
+    currentPage: userSelectors.getCurrentPage(state),
+    isFetching: userSelectors.getIsFetching(state),
+    followingInProc: userSelectors.getFollowingInProc(state)
   }
 };
 

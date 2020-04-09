@@ -5,6 +5,7 @@ import {required} from "../../utils/validators";
 import { connect } from 'react-redux';
 import { LoginActionCreator } from './../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
+import style from './../../components/FormsControls/style.module.css';
 
 class LoginForm extends Component {
   render() {
@@ -15,10 +16,14 @@ class LoginForm extends Component {
                  validate={[required]}/>
         </div>
         <div>
-          <Field component={Input} name={'password'} placeholder={"Password"} type='password'/>
+          <Field component={Input} name={'password'} placeholder={"Password"}
+                 type='password' validate={[required]}/>
         </div>
         <div>
           <Field component={Input} name={'rememberMe'} type={"checkbox"}/>remember me
+        </div>
+        <div>
+          {this.props.error && <div className={style.formSummaryError}>{this.props.error}</div>}
         </div>
         <div>
           <button>Login</button>
@@ -26,9 +31,9 @@ class LoginForm extends Component {
       </form>
     )
   }
-};
+}
 
-const ReduxLoginForm = reduxForm ({form: 'login'})(LoginForm);
+const LoginFormRedux = reduxForm({ form: 'login' })(LoginForm);
 
 class Login extends Component {
 
@@ -45,7 +50,7 @@ class Login extends Component {
     return(
       <div>
         <h1>Login</h1>
-        <ReduxLoginForm onSubmit={this.onSubmit}/>
+        <LoginFormRedux onSubmit={this.onSubmit}/>
       </div>
     )
   }
