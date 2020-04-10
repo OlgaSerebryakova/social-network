@@ -71,16 +71,18 @@ export const setUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const togglefollowingProc = (isFetching, userId) => ({ type: TOGGLE_FOLLOWING_PROC, isFetching, userId });
 
-export const getUsers= (currentPage, pageSize) => async (dispatch) => {
-  dispatch(toggleIsFetching(true));
+export const getUsers= (currentPage, pageSize) => {
+  return async (dispatch) => {
+    dispatch(toggleIsFetching(true));
 
-  const response = await API.users.getUsers(currentPage, pageSize);
-  dispatch(toggleIsFetching(false));
-  dispatch(setUsers(response.data.items));
-  dispatch(setUsersCount(response.data.totalCount));
+    const response = await API.users.getUsers(currentPage, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(response.data.items));
+    dispatch(setUsersCount(response.data.totalCount));
+  }
 };
 
-export const followUnfolowFlow= async (dispatch, userId, apiMethod, actionCreator) => {
+export const followUnfolowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
   dispatch(togglefollowingProc(true, userId));
   const response = await apiMethod(userId);
   if (response.data.resultCode ===0 ) {

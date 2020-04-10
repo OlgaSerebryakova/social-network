@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { Input } from  './../../components/FormsControls/index';
 import {required} from "../../utils/validators";
 import { connect } from 'react-redux';
@@ -14,15 +14,8 @@ class LoginForm extends Component {
     return(
       <form onSubmit={handleSubmit}>
         {creatorFields(Input, 'email', "Email", [required] )}
-          {/*<Field component={Input} name={'email'} placeholder={"Email"}*/}
-                 {/*validate={[required]}/>*/}
-        <div>
-          <Field component={Input} name={'password'} placeholder={"Password"}
-                 type='password' validate={[required]}/>
-        </div>
-        <div>
-          <Field component={Input} name={'rememberMe'} type={"checkbox"}/>remember me
-        </div>
+        {creatorFields(Input, 'password', "Password", [required], {type: 'password'} )}
+        {creatorFields(Input, 'rememberMe', null, [], {type: 'checkbox'}, "remember me"  )}
         <div>
           {error && <div className={style.formSummaryError}>{error}</div>}
         </div>

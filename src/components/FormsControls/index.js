@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './style.module.css';
-import {required} from "../../utils/validators";
 import { Field } from "redux-form";
 
 
@@ -32,9 +31,14 @@ export const Input = ({input, meta, ...props}) => {
   )
 };
 
-export const creatorFields = (component, name, placeholder, validators) => {
-  <div>
-    <Field component={component} name={name} placeholder={placeholder}
-           validate={validators}/>
-  </div>
+export const creatorFields = (component, name, placeholder, validators, props, text='') => {
+  return (
+    <div>
+      <Field component={component}
+             name={name}
+             placeholder={placeholder}
+             validate={validators}
+             {...props}/>{text}
+    </div>
+    )
 };
