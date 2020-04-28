@@ -7,18 +7,25 @@ import { LoginActionCreator } from './../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
 import style from './../../components/FormsControls/style.module.css';
 import {creatorFields} from "../../components/FormsControls";
+import s from './style.module.css';
 
 class LoginForm extends Component {
+
   render() {
-    const {handleSubmit, error} = this.props;
+    const { handleSubmit, error, captchaUrl } = this.props;
+
     return(
       <form onSubmit={handleSubmit}>
         {creatorFields(Input, 'email', "Email", [required] )}
         {creatorFields(Input, 'password', "Password", [required], {type: 'password'} )}
         {creatorFields(Input, 'rememberMe', null, [], {type: 'checkbox'}, "remember me"  )}
-        <div>
-          {error && <div className={style.formSummaryError}>{error}</div>}
-        </div>
+
+        { captchaUrl && <img className={s.captchaImg} src={captchaUrl} /> }
+        { captchaUrl && creatorFields(Input, 'captcha', 'Symbol from image', [required] ) }
+
+      <div>
+        { error && <div className={style.formSummaryError}>{error}</div>}
+      </div>
         <div>
           <button>Login</button>
         </div>
@@ -27,12 +34,12 @@ class LoginForm extends Component {
   }
 }
 
-const LoginFormRedux = reduxForm({ form: 'login' })(LoginForm);
+const LoginFormRedux = reduxForm({ form: 'signin' })(LoginForm);
 
 class Login extends Component {
 
   onSubmit = (dataForm) => {
-    this.props.LoginActionCreator(dataForm.email, dataForm.password, dataForm.rememberMe)
+    this.props.LoginActionCreator(dataForm.email, dataForm.password, dataForm.rememberMe, dataForm.captcha)
   };
 
   render() {
@@ -44,14 +51,15 @@ class Login extends Component {
     return(
       <div>
         <h1>Login</h1>
-        <LoginFormRedux onSubmit={this.onSubmit}/>
+        <LoginFormRedux onSubmit={this.onSubmit} captchaUrl={this.props.captchaUrl}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl
 });
 
 export default connect(mapStateToProps, { LoginActionCreator })(Login)

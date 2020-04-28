@@ -1,41 +1,79 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import style from './style.module.css'
 import Loading from "../../../assets/images/loading";
 import ProfileStatusWithHook from './ProfileStatusWithHooks';
+import Photo from './../../../assets/images/user.jpg';
+import ProfileDataForm from './ProfileDataForm';
+import {creatorFields, Textarea} from "../../../components/FormsControls";
 
-export default class ProfileInfo extends Component {
+const ProfileInfo = ({ status, profile, updateStatus, isOwner, savePhoto, saveProfile }) => {
 
-  render() {
-    return(
-      <div>
-        {!this.props.profile
-        ? <Loading size={40}/>
-        : <div>
-            {/*<div>*/}
-              {/*<img src="https://cdn.beach-inspector.com/static/awards/lp-header.jpg?w=1200&h=400&fit=crop" alt="ocean"/>*/}
-            {/*</div>*/}
-            <div className={style.descriptionBlock}>
-              <img className={style.profileImg} src={this.props.profile.photos.large} alt='avatar'/>
-              <ProfileStatusWithHook status={this.props.status} updateStatus={this.props.updateStatus}/>
-              <div><span className={style.profileDescription}>В поисках работы: </span>{this.props.profile.lookingForAJob === true ? 'Да' : 'Нет' }</div>
-              <div><span className={style.profileDescription}>Описание: </span>{this.props.profile.lookingForAJobDescription}</div>
-              <div><span className={style.profileDescription}>Имя: </span>{this.props.profile.fullName}</div>
-              <div><span className={style.profileDescription}>Контакты: </span>
-                <div className={style.profileContacts}>
-                  {this.props.profile.contacts.github ? <div>Github: {this.props.profile.contacts.github}</div> : ``}
-                  {this.props.profile.contacts.vk ? <div>VK: {this.props.profile.contacts.vk}</div> : ''}
-                  {this.props.profile.contacts.facebook ? <div>Facebook: {this.props.profile.contacts.facebook}</div> : ''}
-                  {this.props.profile.contacts.twitter ? <div>Twitter: {this.props.profile.contacts.twitter}</div> : ''}
-                  {this.props.profile.contacts.website ? <div>Website: {this.props.profile.contacts.website}</div> : ''}
-                  {this.props.profile.contacts.youtube ? <div>Youtube: {this.props.profile.contacts.youtube}</div> : ''}
-                  {this.props.profile.contacts.mainLink ? <div>MainLink: {this.props.profile.contacts.mainLink}</div> : ''}
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      </div>
+  let [ editMode, setEditMode ] = useState(false);
+
+  const onMainPhotoSelector = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
+
+  const goToEditMode = () => {
+    setEditMode(true)
+  };
+
+  const onSubmit = (dataForm) => {
+    saveProfile(dataForm).then(
+      () => {
+        setEditMode(false);
+      }
     )
-  }
+  };
+
+  return(
+    <div>
+      {!profile
+      ? <Loading size={40}/>
+      : <div>
+          <div className={style.descriptionBlock}>
+            <img className={style.profileImg} src={profile.photos.large || Photo} alt='avatar'/>
+            { isOwner && <input type={"file"} onChange={onMainPhotoSelector} />}
+            <ProfileStatusWithHook status={status} updateStatus={updateStatus}/>
+            { editMode
+              ? <ProfileDataForm  initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+              : <ProfileData goToEditMode={goToEditMode} profile={profile} isOwner={isOwner}/> }
+          </div>
+        </div>
+      }
+    </div>
+    );
 };
+
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+  return (
+    <div>
+      { isOwner && <div><button onClick={goToEditMode}>Редактировать</button></div>}
+
+      <div><span className={style.profileDescription}>В поисках работы: </span>{profile.lookingForAJob ? 'Да' : 'Нет' }</div>
+      <div><span className={style.profileDescription}>Описание: </span>{profile.lookingForAJobDescription}</div>
+      <div><span className={style.profileDescription}>Имя: </span>{profile.fullName}</div>
+      <div><span className={style.profileDescription}>Обо мне: </span>{profile.aboutMe}</div>
+      <div><span className={style.profileDescription}>Контакты: </span>
+        <div className={style.profileContacts}>
+          {Object.keys(profile.contacts).map(key => {
+            return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+          }) }
+        </div>
+      </div>
+    </div>
+  )
+};
+
+const Contacts = ({contactTitle, contactValue}) => {
+  return (
+    <div>
+      <b>{contactTitle}</b>: {contactValue}
+    </div>
+  )
+};
+
+export default ProfileInfo;
 

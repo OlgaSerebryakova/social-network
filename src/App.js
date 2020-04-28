@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { connect } from "react-redux";
+
 import './App.css';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Navbar from './components/Navbar/Navbar.jsx'
+import HeaderContainer from './components/Header/HeaderContainer'; //
+import Navbar from './components/Navbar/Navbar.jsx' //
 import ProfileContainer from './pages/Profile/ProfileContainer';
 import DialogsContainer from './pages/Dialogs/DialogContainer';
 import UsersContainer from './pages/Users/usersContainer';
@@ -12,10 +14,8 @@ import News from './pages/News/index';
 import Music from './pages/Music/index';
 import Settings from './pages/Settings/index';
 import LoginPage from './pages/Login/index';
-import connect from "react-redux/es/connect/connect";
 import { initializeAPP } from "./redux/app-reducer";
 import Loading from "./assets/images/loading";
-
 
 
 class App extends Component {
@@ -34,6 +34,7 @@ class App extends Component {
           <HeaderContainer />
           <Navbar />
           <div className='wrapper-content'>
+            <Switch>
             <Route path='/profile/:userId?' render={ () => <ProfileContainer
               store={this.props.store}/> }/>
 
@@ -49,6 +50,7 @@ class App extends Component {
             <Route path='/news' component={News}/>
             <Route path='/music' component={Music}/>
             <Route path='/settings' component={Settings}/>
+            </Switch>
           </div>
         </div>
     )

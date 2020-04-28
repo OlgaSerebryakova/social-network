@@ -21,7 +21,7 @@ export default function appReducer(state = initState, action) {
 export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
 export const initializeAPP= () => (dispatch) => {
-  let promise = dispatch(getAuthMeActionCreator);
+  let promise = dispatch(getAuthMeActionCreator());
 
   Promise.all([promise])
     .then(() => {

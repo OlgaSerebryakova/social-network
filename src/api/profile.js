@@ -17,3 +17,22 @@ export const updateStatus = (status) => {
     axiosFetch.put(`profile/status`, { status: status })
   )
 };
+
+export const savePhoto = (photoFile) => {
+  const formData = new FormData();
+  formData.append('image', photoFile);
+  return (
+    axiosFetch.put(`profile/photo`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  )
+};
+
+export const saveProfile = (profile) => {
+  return (
+    axiosFetch.put(`profile`, profile )
+  )
+};
+

@@ -21,6 +21,9 @@ export const Input = ({input, meta, ...props}) => {
 
   const showError = meta.touched && meta.error;
 
+  console.log('input: ', input);
+  console.log('props: ', props);
+
   return(
     <div className={styles.formControl + ' ' + (showError ? styles.error : '')}>
       <div>
