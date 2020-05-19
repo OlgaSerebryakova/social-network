@@ -1,19 +1,40 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {follow, unfollow, setUsers,
-        setCurrentPage, setUsersCount,
+import {follow, unfollow,
+        setCurrentPage,
         getUsers} from "../../redux/users-reducer";
 import Users from "./index";
 import Loading from './../../assets/images/loading';
-import * as userSelectors from './../../redux/users-selectors';
+import * as userSelectors from '../../redux/users-selectors';
+import {userType} from "../../types/types";
+import { AppStateType } from "../../redux/redux-store";
 
-class UsersContainer extends Component {
+type mapStatePropsType = {
+  currentPage: number,
+  pageSize: number,
+  isFetching: boolean,
+  totalUsersCount: number,
+  users: Array<userType>,
+  followingInProc: Array<number>
+}
+
+type mapDispatchPropsType = {
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+  getUsers: (currentPage: number, pageSize: number) => void
+  setCurrentPage: (pageNumber: number) => void
+}
+
+type PropsType = mapStatePropsType & mapDispatchPropsType;
+
+
+class UsersContainer extends Component<PropsType> {
 
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
     this.props.setCurrentPage(pageNumber);
     this.props.getUsers(pageNumber, this.props.pageSize);
   };
@@ -35,7 +56,7 @@ class UsersContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): mapStatePropsType => {
   return {
     users: userSelectors.getUsers(state),
     pageSize: userSelectors.getPageSize(state),
@@ -46,7 +67,28 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps,
-  {follow, unfollow, setUsers,
-    setCurrentPage, setUsersCount,
-    getUsers})(UsersContainer);
+const mapDispatchToProps: mapDispatchPropsType = {
+  follow,
+  unfollow,
+  setCurrentPage,
+  getUsers
+};
+
+export default connect<mapStatePropsType, mapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(UsersContainer);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

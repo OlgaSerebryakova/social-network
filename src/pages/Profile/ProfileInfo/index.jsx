@@ -4,7 +4,7 @@ import Loading from "../../../assets/images/loading";
 import ProfileStatusWithHook from './ProfileStatusWithHooks';
 import Photo from './../../../assets/images/user.jpg';
 import ProfileDataForm from './ProfileDataForm';
-import {creatorFields, Textarea} from "../../../components/FormsControls";
+import {creatorFields, Textarea} from "../../../components/FormsControls/index";
 
 const ProfileInfo = ({ status, profile, updateStatus, isOwner, savePhoto, saveProfile }) => {
 

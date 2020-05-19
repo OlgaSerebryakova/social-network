@@ -19,6 +19,10 @@ const createReducers = combineReducers({
   app: appReducer
 });
 
+type createReducersType = typeof createReducers;
+export type AppStateType = ReturnType<createReducersType>
+
+
 const logger = createLogger({
   collapsed: true
 });

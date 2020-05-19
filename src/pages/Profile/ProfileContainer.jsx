@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getProfileByIdActionCreator, getStatusByIdActionCreator,
-          updateStatusActionCreator, savePhotoAC, saveProfileAC} from './../../redux/profile_reducer';
+          updateStatusActionCreator, savePhotoAC, saveProfileAC} from '../../redux/profile_reducer';
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import Profile from './Profile';
 

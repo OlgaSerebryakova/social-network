@@ -1,13 +1,18 @@
 import React from 'react';
 import styles from './style.module.css';
-import { Field } from "redux-form";
+import {Field, WrappedFieldMetaProps} from "redux-form";
+import {TvalidatorField} from "../../utils/validators";
 
+type FormsControlType = {
+  input: WrappedFieldMetaProps
+  meta: WrappedFieldMetaProps
+}
 
-export const Textarea = ({input, meta, ...props}) => {
+export const Textarea: React.FC<FormsControlType> = ({input, meta, ...props}) => {
 
   const showError = meta.touched && meta.error;
 
-  return(
+  return (
     <div className={styles.formControl + ' ' + (showError ? styles.error : '')}>
       <div>
         <textarea {...input} {...props} />
@@ -17,7 +22,7 @@ export const Textarea = ({input, meta, ...props}) => {
   )
 };
 
-export const Input = ({input, meta, ...props}) => {
+export const Input: React.FC<FormsControlType> = ({input, meta, ...props}) => {
 
   const showError = meta.touched && meta.error;
 
@@ -34,7 +39,11 @@ export const Input = ({input, meta, ...props}) => {
   )
 };
 
-export const creatorFields = (component, name, placeholder, validators, props, text='') => {
+export function creatorFields<FormKeysType extends string>(component: React.FC<FormsControlType>,
+                              name: FormKeysType,
+                              placeholder: string | undefined,
+                              validators: Array<TvalidatorField>,
+                              props = {}, text='') {
   return (
     <div>
       <Field component={component}
@@ -44,4 +53,4 @@ export const creatorFields = (component, name, placeholder, validators, props, t
              {...props}/>{text}
     </div>
     )
-};
+}

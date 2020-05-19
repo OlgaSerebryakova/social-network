@@ -3,8 +3,8 @@ import style from './style.module.css';
 import DialogItem from './DialogItems/index';
 import Message from './Message/index'
 import { reduxForm, Field } from "redux-form";
-import { Textarea } from './../../components/FormsControls/index';
-import {maxLengthCreator, required} from "../../utils/validators";
+import { Textarea } from '../../components/FormsControls/index';
+import {maxLengthCreator, required} from "../../utils/validators/index";
 
 const maxLength10 = maxLengthCreator(10);
 
