@@ -1,13 +1,14 @@
-const SEND_MESSAGE = 'SEND_MESSAGE';
+import {InferActionsTypes} from "./redux-store";
 
 export type StateInitType = typeof stateInit;
+type TAction = InferActionsTypes<typeof actions>
 
-type dialogDataType = {
+export type dialogDataType = {
   id: number,
   name: string
 }
 
-type messageDataType = {
+export type messageDataType = {
   id: number,
   message: string
 }
@@ -32,7 +33,7 @@ const stateInit = {
 
 export default function messageReducer(state = stateInit, action: any) {
   switch (action.type) {
-    case SEND_MESSAGE:
+    case 'SEND_MESSAGE':
       return {
         ...state,
         messageData: [...state.messageData, {
@@ -45,10 +46,8 @@ export default function messageReducer(state = stateInit, action: any) {
   }
 };
 
-export type sendNewMessageCreatorType = {
-  type: typeof SEND_MESSAGE,
-  newMessageText: string
+export const actions = {
+  sendNewMessageCreator: (newMessageText: string) =>
+    ({type: 'SEND_MESSAGE', newMessageText} as const)
 }
 
-export const sendNewMessageCreator = (newMessageText: string):sendNewMessageCreatorType =>
-  ({type: SEND_MESSAGE, newMessageText});

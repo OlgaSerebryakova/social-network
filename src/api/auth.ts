@@ -1,21 +1,13 @@
-import axiosFetch from './axios';
+import axiosFetch, {ResultCodeForCapcthaEnum, ResultCodesEnum, TResponse} from './axios';
 
 type TResponseGetAuthMe = {
-  data: {
     id: number
     email: string
     login: string
-  }
-  resultCode: number
-  messages: Array<string>
 }
 
 type TResponseLogin = {
-  data: {
     userId: number
-  }
-  resultCode: number
-  messages: Array<string>
 }
 
 type TResponseLogout = {
@@ -30,13 +22,14 @@ type TResponseGetCaptcha = {
 
 export const getAuthMe = () => {
   return (
-    axiosFetch.get<TResponseGetAuthMe>(`auth/me`)
+    axiosFetch.get<TResponse<TResponseGetAuthMe>>(`auth/me`)
   )
 };
 
 export const Login = (email: string, password: string, rememberMe = false, captcha: null | string = null) => {
   return (
-    axiosFetch.post<TResponseLogin>(`/auth/login`, { email, password, rememberMe, captcha })
+    axiosFetch.post<TResponse<TResponseLogin, ResultCodesEnum | ResultCodeForCapcthaEnum >>(`/auth/login`,
+      { email, password, rememberMe, captcha })
   )
 };
 
@@ -48,6 +41,6 @@ export const Logout = () => {
 
 export const getCaptcha = () => {
   return (
-    axiosFetch.get<TResponseGetCaptcha>(`security/get-captcha-url`)
+    axiosFetch.get<TResponseGetCaptcha>(`security/get-captcha-url`).then(response => response.data)
   )
 };

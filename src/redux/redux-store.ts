@@ -1,6 +1,6 @@
-import { combineReducers , createStore, applyMiddleware } from 'redux';
+import {combineReducers, createStore, applyMiddleware, Action} from 'redux';
 import { createLogger } from 'redux-logger';
-import thunkMiddleware from 'redux-thunk';
+import thunkMiddleware, {ThunkAction} from 'redux-thunk';
 import profileReducer from "./profile_reducer";
 import messageReducer from './message-reducer';
 import sidebarReducer from './sidebar-reducer';
@@ -19,10 +19,6 @@ const createReducers = combineReducers({
   app: appReducer
 });
 
-type createReducersType = typeof createReducers;
-export type AppStateType = ReturnType<createReducersType>
-
-
 const logger = createLogger({
   collapsed: true
 });
@@ -30,3 +26,10 @@ const logger = createLogger({
 const store = createStore(createReducers, applyMiddleware(logger, thunkMiddleware));
 
 export default store;
+
+type createReducersType = typeof createReducers;
+export type AppStateType = ReturnType<createReducersType>
+
+export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
+
+export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>

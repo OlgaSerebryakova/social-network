@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {follow, unfollow,
-        setCurrentPage,
+        actions,
         getUsers} from "../../redux/users-reducer";
 import Users from "./index";
-import Loading from './../../assets/images/loading';
+import Loading from '../../assets/images/loading';
 import * as userSelectors from '../../redux/users-selectors';
 import {userType} from "../../types/types";
 import { AppStateType } from "../../redux/redux-store";
@@ -17,6 +17,8 @@ type mapStatePropsType = {
   users: Array<userType>,
   followingInProc: Array<number>
 }
+
+const setCurrentPage = actions.setCurrentPage
 
 type mapDispatchPropsType = {
   unfollow: (userId: number) => void

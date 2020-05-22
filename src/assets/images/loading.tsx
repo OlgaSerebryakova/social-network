@@ -1,7 +1,11 @@
 import React from 'react';
 import style from './style.module.css';
 
-export default function Loading(props) {
+type PropsType = {
+  size: number,
+}
+
+const Loading:React.FC<PropsType> = (props) => {
   return (
     <div className={style.loaderWrapper} style={{ height: `${props.size}px`, width: `${props.size}px`}}>
       <svg className={style.icon} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
@@ -17,3 +21,5 @@ export default function Loading(props) {
     </div>
   );
 }
+
+export default Loading;

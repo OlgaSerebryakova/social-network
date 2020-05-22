@@ -6,19 +6,25 @@ import { connect } from "react-redux";
 
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer'; //
-import Navbar from './components/Navbar/Navbar.jsx' //
+
 import ProfileContainer from './pages/Profile/ProfileContainer';
 import DialogsContainer from './pages/Dialogs/DialogContainer';
 import UsersContainer from './pages/Users/usersContainer';
-import News from './pages/News/index';
-import Music from './pages/Music/index';
-import Settings from './pages/Settings/index';
+import News from './pages/News';
+import Music from './pages/Music';
+import Settings from './pages/Settings';
 import LoginPage from './pages/Login/index';
 import { initializeAPP } from "./redux/app-reducer";
 import Loading from "./assets/images/loading";
+import {AppStateType} from "./redux/redux-store";
+import Navbar from "./components/Navbar/Navbar";
 
+type MapPropType = ReturnType<typeof mapStateToProps>
+type DispatchPropType = {
+  initializeAPP: () => void
+}
 
-class App extends Component {
+class App extends Component<MapPropType & DispatchPropType, any> {
 
   componentDidMount() {
     this.props.initializeAPP();
@@ -35,17 +41,13 @@ class App extends Component {
           <Navbar />
           <div className='wrapper-content'>
             <Switch>
-            <Route path='/profile/:userId?' render={ () => <ProfileContainer
-              store={this.props.store}/> }/>
+            <Route path='/profile/:userId?' render={ () => <ProfileContainer/> }/>
 
-            <Route path='/dialogs' render={ () => <DialogsContainer
-            store={this.props.store}/> }/>
+            <Route path='/dialogs' render={ () => <DialogsContainer/> }/>
 
-            <Route path='/users' render={ () => <UsersContainer
-              store={this.props.store}/> }/>
+            <Route path='/users' render={ () => <UsersContainer/> }/>
 
-            <Route path='/login' render={ () => <LoginPage
-              store={this.props.store}/> }/>
+            <Route path='/login' render={ () => <LoginPage/> }/>
 
             <Route path='/news' component={News}/>
             <Route path='/music' component={Music}/>
@@ -57,11 +59,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 });
 
-export default compose(
+export default compose<React.ComponentType>(
   withRouter,
   connect(mapStateToProps, { initializeAPP }))(App);
 

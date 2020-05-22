@@ -9,3 +9,18 @@ const axiosFetch = axios.create({
 });
 
 export default axiosFetch;
+
+export type TResponse<D = {}, RC = ResultCodesEnum> = {
+  data: D
+  messages: Array<string>
+  resultCode: RC
+}
+
+export enum ResultCodesEnum {
+  Success = 0,
+  Error = 1
+}
+
+export enum ResultCodeForCapcthaEnum {
+  CaptchaIsRequired = 10
+}

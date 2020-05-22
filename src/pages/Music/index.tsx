@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Music extends Component {
+type PropsTypes = {
+
+}
+
+export default class Music extends Component<PropsTypes, any> {
   render() {
     return(
       <div>

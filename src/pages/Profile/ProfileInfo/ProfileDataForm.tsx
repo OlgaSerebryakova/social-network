@@ -1,10 +1,16 @@
-import React from "react";
+import React, {Component} from "react";
 import style from "./style.module.css";
-import {creatorFields, Input, Textarea} from '../../../components/FormsControls/index';
-import {reduxForm} from "redux-form";
+import {creatorFields, Input, Textarea} from '../../../components/FormsControls';
+import {InjectedFormProps, reduxForm} from "redux-form";
+import {profileType} from "../../../types/types";
 
+type PropsType = {
+  profile: profileType
+}
 
-const ProfileDataForm = ({ profile, handleSubmit, error }) => {
+type ProfileKeysType = Extract<keyof profileType, string>
+
+const ProfileDataForm: React.FC<InjectedFormProps<profileType, PropsType> & PropsType> = ({ profile, handleSubmit, error }) => {
 
   return (
     <form onSubmit={handleSubmit}>
@@ -15,22 +21,22 @@ const ProfileDataForm = ({ profile, handleSubmit, error }) => {
 
       <div>
         <span className={style.profileDescription}>Имя: </span>
-        { creatorFields(Input, 'fullName', 'Имя', [] ) }
+        { creatorFields<ProfileKeysType>(Input, 'fullName', 'Имя', [] ) }
       </div>
 
       <div>
         <span className={style.profileDescription}>В поисках работы: </span>
-        { creatorFields(Input, 'lookingForAJob', '', [], {type: 'checkbox'} ) }
+        { creatorFields<ProfileKeysType>(Input, 'lookingForAJob', '', [], {type: 'checkbox'} ) }
       </div>
 
       <div>
         <span className={style.profileDescription}>Описание: </span>
-        { creatorFields(Textarea, 'lookingForAJobDescription', 'Описание', [] ) }
+        { creatorFields<ProfileKeysType>(Textarea, 'lookingForAJobDescription', 'Описание', [] ) }
       </div>
 
       <div>
         <span className={style.profileDescription}>Обо мне: </span>
-        { creatorFields(Textarea, 'aboutMe', 'Обо мне', [] ) }
+        { creatorFields<ProfileKeysType>(Textarea, 'aboutMe', 'Обо мне', [] ) }
       </div>
 
       <div>
@@ -48,6 +54,6 @@ const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   )
 };
 
-const ReduxProfileDataForm = reduxForm({ form: 'edit-profile' })(ProfileDataForm);
+const ReduxProfileDataForm = reduxForm<profileType, PropsType>({ form: 'edit-profile' })(ProfileDataForm);
 
 export default ReduxProfileDataForm;

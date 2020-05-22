@@ -14,7 +14,7 @@ type TloginOwnProps = {
   captchaUrl: string | null
 }
 
-class LoginForm extends Component<InjectedFormProps<TloginFormValues> & TloginOwnProps> {
+class LoginForm extends Component<InjectedFormProps<TloginFormValues> & TloginOwnProps, any> {
 
   render() {
     const { handleSubmit, error, captchaUrl } = this.props;

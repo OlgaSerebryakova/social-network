@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
-export default class Settings extends Component {
+type PropsTypes = {
+
+}
+
+export default class News extends Component<PropsTypes, any> {
   render() {
     return(
       <div>
-        Settings
+        News
       </div>
     )
   }

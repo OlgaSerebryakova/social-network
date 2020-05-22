@@ -1,23 +1,20 @@
 import { getAuthMeActionCreator } from "./auth-reducer";
 import { Dispatch } from "redux";
+import { InferActionsTypes } from './redux-store';
 
+export type initStateType = typeof initState;
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
-
-export type initStateType = {
-  initialized: boolean
-};
-
-type TAction = initializedSuccessType
-type TDispatch = Dispatch<TAction>
-
-const initState: initStateType = {
+const initState = {
   initialized: false
 };
 
+type TAction = InferActionsTypes<typeof actions>
+type TDispatch = Dispatch<TAction>
+
+
 export default function appReducer(state = initState, action: any):initStateType  {
   switch (action.type) {
-    case INITIALIZED_SUCCESS:
+    case 'APP_INITIALIZED_SUCCESS':
       return {
         ...state,
         initialized: true
@@ -27,17 +24,16 @@ export default function appReducer(state = initState, action: any):initStateType
   }
 }
 
-type initializedSuccessType = {
-  type: typeof INITIALIZED_SUCCESS
+const actions = {
+  initializedSuccess: () => ({type: 'APP_INITIALIZED_SUCCESS'} as const )
 }
 
-export const initializedSuccess = (): initializedSuccessType => ({type: INITIALIZED_SUCCESS});
 
 export const initializeAPP = () => (dispatch: any) => {
   let promise = dispatch(getAuthMeActionCreator());
 
   Promise.all([promise])
     .then(() => {
-      dispatch(initializedSuccess());
+      dispatch(actions.initializedSuccess());
     });
 };

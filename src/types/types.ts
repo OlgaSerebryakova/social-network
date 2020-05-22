@@ -28,7 +28,8 @@ export type profileType = {
   lookingForAJobDescription: string,
   fullName: string,
   contacts: contactsType,
-  photos: photosType
+  photos: photosType,
+  aboutMe: string
 }
 
 export type userType = {

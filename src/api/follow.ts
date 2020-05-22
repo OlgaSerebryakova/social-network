@@ -1,15 +1,9 @@
-import axiosFetch from "./axios";
-
-type TResponsePostFollow = {
-  data: Object
-  resultCode: number
-  messages: Array<string>
-}
+import axiosFetch, { TResponse } from "./axios";
 
 export const postFollow = (id: number) => {
-  return axiosFetch.post<TResponsePostFollow>(`follow/${id}`)
+  return axiosFetch.post<TResponse>(`follow/${id}`)
 };
 
 export const deleteUnfolow = (id: number) => {
-  return axiosFetch.delete(`follow/${id}`)
+  return axiosFetch.delete(`follow/${id}`) as Promise<TResponse>
 };

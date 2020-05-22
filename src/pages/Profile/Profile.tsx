@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import ProfileInfo from './ProfileInfo/index';
+import ProfileInfo from './ProfileInfo';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import style from './Profile.module.css';
+import {profileType} from "../../types/types";
 
-export default class Profile extends Component {
+type PropsType = {
+  status: string,
+  profile: profileType | null,
+  updateStatus: (status: string) => void,
+  isOwner: boolean,
+  savePhoto: (file: File) => void,
+  saveProfile:(profile: profileType) => Promise<any>
+}
+
+export default class Profile extends Component<PropsType, any> {
 
   render() {
     return(
@@ -14,7 +24,7 @@ export default class Profile extends Component {
                      status={this.props.status}
                      saveProfile={this.props.saveProfile}
                      updateStatus={this.props.updateStatus}/>
-        <MyPostsContainer store={this.props.store}/>
+        <MyPostsContainer />
       </div>
     )
   }
