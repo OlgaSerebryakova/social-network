@@ -27,7 +27,7 @@ type DispatchPropType = {
 class App extends Component<MapPropType & DispatchPropType, any> {
 
   componentDidMount() {
-    this.props.initializeAPP();
+    this.props.initializeAPP() ;
   }
 
   render() {

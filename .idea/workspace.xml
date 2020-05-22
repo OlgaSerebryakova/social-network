@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff92fcff-2753-4114-acaf-cbbde66e263e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/follow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/follow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/profile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/loading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/loading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hoc/withAuthRedirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/withAuthRedirect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dialogs/DialogContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dialogs/DialogContainer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dialogs/DialogItems/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dialogs/DialogItems/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dialogs/Message/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dialogs/Message/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dialogs/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dialogs/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Music/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Music/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/News/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/News/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/MyPosts/MyPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/MyPosts/MyPostsContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/MyPosts/MyPostsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/MyPosts/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/MyPosts/Post/Post.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/ProfileContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/ProfileContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/ProfileDataForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/ProfileDataForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/ProfileStatusWithHooks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/ProfileStatusWithHooks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/ProfileInfo/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Settings/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Users/usersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Users/usersContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/app-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/message-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/message-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/profile_reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/profile_reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/object-helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/object-helper.ts" afterDir="false" />
-    </list>
+    <list default="true" id="ff92fcff-2753-4114-acaf-cbbde66e263e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +115,7 @@
       <workItem from="1589872375558" duration="12191000" />
       <workItem from="1589897542474" duration="987000" />
       <workItem from="1589899034280" duration="89000" />
-      <workItem from="1589899154870" duration="25452000" />
+      <workItem from="1589899154870" duration="25749000" />
     </task>
     <servers />
   </component>
