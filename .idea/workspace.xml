@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff92fcff-2753-4114-acaf-cbbde66e263e" name="Default Changelist" comment="" />
+    <list default="true" id="ff92fcff-2753-4114-acaf-cbbde66e263e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +118,7 @@
       <workItem from="1589872375558" duration="12191000" />
       <workItem from="1589897542474" duration="987000" />
       <workItem from="1589899034280" duration="89000" />
-      <workItem from="1589899154870" duration="25749000" />
+      <workItem from="1589899154870" duration="26053000" />
     </task>
     <servers />
   </component>
